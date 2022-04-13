@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import mongoengine, os, sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_mongoengine',
 ]
 
 MIDDLEWARE = [
@@ -75,11 +78,16 @@ WSGI_APPLICATION = 'lle.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': '',       
     }
 }
 
+MONGO_USER = os.environ.get('MONGO_USER', None)
+MONGO_PASS = os.environ.get('MONGO_PASS', None)
+MONGO_HOST = os.environ.get('MONGO_HOST', None)
+MONGO_URI = \
+'mongodb+srv://{user}:{password}@{host}/?retryWrites=true&replicaSet=rs0'.format(user=MONGO_USER, password=MONGO_PASS, host=MONGO_HOST)
+mongoengine.connect(host=MONGO_URI, db='limitedLemonade')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
