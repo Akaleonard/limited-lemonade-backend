@@ -4,7 +4,7 @@ from mongoengine import *
 
 class Events(Document):
     meta = {
-        'db_alias': 'limitedlemonadedb',
+        'db_alias': 'limitedLemonadedb',
         'collection': 'events'
     }
     address = StringField()
