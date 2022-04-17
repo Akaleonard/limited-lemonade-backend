@@ -87,8 +87,8 @@ MONGO_USER = os.environ.get('MONGO_USER', None)
 MONGO_PASS = os.environ.get('MONGO_PASS', None)
 MONGO_HOST = os.environ.get('MONGO_HOST', None)
 MONGO_URI = \
-'mongodb+srv://{user}:{password}@{host}/?retryWrites=true&replicaSet=rs0'.format(user=MONGO_USER, password=MONGO_PASS, host=MONGO_HOST)
-mongoengine.connect(host=MONGO_URI, db='limitedLemonade')
+'mongodb+srv://{user}:{password}@{host}/?retryWrites=true'.format(user=MONGO_USER, password=MONGO_PASS, host=MONGO_HOST)
+mongoengine.connect(host=MONGO_URI, db='limitedlemonadedb', alias='limitedlemonadedb')
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
