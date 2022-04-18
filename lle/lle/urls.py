@@ -20,5 +20,5 @@ from events.urls import router as event_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('events/', include(event_router.urls)),
+    path('', include(event_router.urls)),
 ]
